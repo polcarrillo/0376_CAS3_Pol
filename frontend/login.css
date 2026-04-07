@@ -1,12 +1,43 @@
 /* Configuración general */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+}
+
+.content-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #1877f2 0%, #3b6efd 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content h1 {
     margin: 0;
-    background-color: #f0f2f5;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
 }
 
 /* Caja del Login */
