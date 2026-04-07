@@ -1,0 +1,99 @@
+:root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --primary: #1877f2;
+    --primary-dark: #166fe5;
+    --text: #1c1e21;
+    --muted: #5b6070;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), #3b6efd);
+    color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 120px 1.5rem 2rem;
+}
+
+.button-panel {
+    max-width: 500px;
+    width: 100%;
+    background-color: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    text-align: center;
+}
+
+.button-panel h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    color: var(--text);
+}
+
+.button-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.action-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    box-shadow: 0 10px 24px rgba(24, 119, 242, 0.18);
+}
+
+.action-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+    .button-panel {
+        padding: 1.5rem;
+    }
+
+    .header-content h1 {
+        font-size: 0.98rem;
+    }
+}
