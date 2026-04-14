@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-/*
-Aquest fitxer és el punt d'entrada de l'aplicació.
-Segons l'enunciat, hem de gestionar sessions i diferenciar rols.
-Per tant, aquí comprovem si l'usuari està loguejat i cap a on l'hem d'enviar.
-*/
+/*Aquest fitxer és el punt d'entrada de l'aplicació.*/
 
 // Si NO hi ha sessió → login
 if (!isset($_SESSION["user_id"])) {
