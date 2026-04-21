@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["usuari"] = $user["usuari"];
             $_SESSION["rol"] = $user["rol"];
             $_SESSION["idAlumne"] = $user["idAlumne"] !== null ? (int)$user["idAlumne"] : null;
+        }
 
             header("Location: menu.php");
             exit;
