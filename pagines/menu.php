@@ -1,13 +1,13 @@
 <?php
 require_once "../reusables/autenticació.php";
+
+// Variables opcionals per al header
+$titolPagina = 'Menú principal';
+$rutaBase    = '../';   // perquè estàs dins de /pagines
+
+require_once "../reusables/header.php";
 ?>
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <title>Menú principal</title>
-</head>
-<body>
+
     <h1>Menú principal</h1>
 
     <p>Usuari: <?= htmlspecialchars($_SESSION["usuari"]) ?></p>
@@ -28,5 +28,5 @@ require_once "../reusables/autenticació.php";
     <?php endif; ?>
 
     <p><a href="logout.php">Tancar sessió</a></p>
-</body>
-</html>
+
+<?php require_once "../reusables/footer.php"; ?>
