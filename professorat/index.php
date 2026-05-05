@@ -49,8 +49,6 @@ mostrarMissatge();
         <div style="color:#666;">Alumnes registrats</div>
     </div>
     <div class="card" style="text-align:center;">
-        <img src="../imatges/montsia-removebg-preview.png" alt="Foto de perfil"
-             style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:0.5rem; border:3px solid #1a4f8a;">
         <div style="font-size:2rem; font-weight:700; color:#1a4f8a;"><?= (int)$totalAssig ?></div>
         <div style="color:#666;">Assignacions actives</div>
     </div>

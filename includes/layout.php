@@ -138,7 +138,7 @@ function capçalera(string $titol = ''): void {
 </head>
 <body>
 <header>
-    <h1>🖥️ <?= APP_NAME ?></h1>
+    <h1><img src="<?= BASE_URL ?>imatges/montsia-removebg-preview.png" alt="Institut Montsià" style="height:44px; vertical-align:middle; margin-right:0.5rem;"><?= APP_NAME ?></h1>
     <div class="user-info">
         <span><?= h($nomUsuari) ?></span>
         <span class="badge <?= $rol === ROL_ALUMNE ? 'alumne' : '' ?>"><?= h($rol) ?></span>
