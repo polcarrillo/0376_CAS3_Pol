@@ -10,9 +10,9 @@
  */
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'gestio_material');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'iaw');
+define('DB_USER', 'admin');
+define('DB_PASS', '1234');
 define('DB_CHARSET', 'utf8mb4');
 
 /** Nom de l'aplicació */
