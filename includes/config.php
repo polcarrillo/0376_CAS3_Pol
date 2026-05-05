@@ -13,7 +13,6 @@ define('DB_HOST', 'db');
 define('DB_NAME', 'iaw');
 define('DB_USER', 'admin');
 define('DB_PASS', '1234');
-define('BASE_URL', '/0376_CAS3_Pol/');
 define('DB_CHARSET', 'utf8mb4');
 
 /** Nom de l'aplicació */
