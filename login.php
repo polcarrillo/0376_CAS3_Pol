@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="login-box">
     <div class="logo">
-        <div style="font-size:3rem;">🏫</div>
+        <img src="imatges/montsia-removebg-preview.png" alt="Institut Montsià" style="height:80px;">
         <h1>Institut Montsià</h1>
         <p>Gestió de Material Informàtic</p>
     </div>
