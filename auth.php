@@ -24,7 +24,7 @@ function iniciarSessio(): void {
         session_set_cookie_params([
             'lifetime' => 0,
             'path'     => '/',
-            'secure'   => false, // Canvia a true en producció amb HTTPS
+            'secure'   => false,
             'httponly' => true,
             'samesite' => 'Strict',
         ]);
@@ -35,7 +35,7 @@ function iniciarSessio(): void {
 /**
  * Comprova si l'usuari ha iniciat sessió.
  *
- * @return bool True si hi ha sessió activa, false en cas contrari.
+ * @return bool True si hi ha sessió activa.
  */
 function estaAutenticat(): bool {
     iniciarSessio();
@@ -87,9 +87,9 @@ function requerirProfessor(): void {
 
 /**
  * Autentica un usuari a partir del correu i contrasenya.
- * Primer comprova la taula de professors (simulada), després la d'alumnes.
+ * Cerca a la taula unificada Usuaris i comprova el rol.
  *
- * @param string $correu     Correu electrònic de l'usuari.
+ * @param string $correu      Correu electrònic de l'usuari.
  * @param string $contrasenya Contrasenya en text pla.
  * @return bool True si l'autenticació és correcta.
  */
@@ -97,39 +97,22 @@ function autenticar(string $correu, string $contrasenya): bool {
     iniciarSessio();
     $db = getDB();
 
-    // --- Comprova professors (taula separada o lògica pròpia) ---
-    // En aquest exemple els professors es gestionen amb una taula 'Professors'
-    // que hauries de crear. Per simplificar, comprovem primer amb hash de password.
     $stmt = $db->prepare(
-        "SELECT id, nom, cognom1, contrasenya_hash FROM Professors WHERE correu = ? LIMIT 1"
+        "SELECT id, nom, cognom1, contrasenya_hash, rol 
+         FROM Usuaris 
+         WHERE correu = ? AND actiu = 1 
+         LIMIT 1"
     );
     $stmt->execute([$correu]);
-    $professor = $stmt->fetch();
+    $usuari = $stmt->fetch();
 
-    if ($professor && password_verify($contrasenya, $professor['contrasenya_hash'])) {
-        $_SESSION['usuari_id']  = $professor['id'];
-        $_SESSION['nom']        = $professor['nom'] . ' ' . $professor['cognom1'];
-        $_SESSION['correu']     = $correu;
-        $_SESSION['rol']        = ROL_PROFESSOR;
+    if ($usuari && password_verify($contrasenya, $usuari['contrasenya_hash'])) {
+        $_SESSION['usuari_id'] = $usuari['id'];
+        $_SESSION['nom']       = $usuari['nom'] . ' ' . $usuari['cognom1'];
+        $_SESSION['correu']    = $correu;
+        $_SESSION['rol']       = $usuari['rol'];
         session_regenerate_id(true);
-        registrarAcces($professor['id'], ROL_PROFESSOR);
-        return true;
-    }
-
-    // --- Comprova alumnes ---
-    $stmt = $db->prepare(
-        "SELECT id, nom, cognom1, contrasenya_hash FROM Alumnes WHERE correu = ? LIMIT 1"
-    );
-    $stmt->execute([$correu]);
-    $alumne = $stmt->fetch();
-
-    if ($alumne && password_verify($contrasenya, $alumne['contrasenya_hash'])) {
-        $_SESSION['usuari_id']  = $alumne['id'];
-        $_SESSION['nom']        = $alumne['nom'] . ' ' . $alumne['cognom1'];
-        $_SESSION['correu']     = $correu;
-        $_SESSION['rol']        = ROL_ALUMNE;
-        session_regenerate_id(true);
-        registrarAcces($alumne['id'], ROL_ALUMNE);
+        registrarAcces($usuari['id'], $usuari['rol']);
         return true;
     }
 
@@ -158,11 +141,11 @@ function registrarAcces(int $idUsuari, string $rol): void {
     try {
         $db = getDB();
         $stmt = $db->prepare(
-            "INSERT INTO LogAccesos (idUsuari, rol, dataHora, ip) VALUES (?, ?, NOW(), ?)"
+            "INSERT INTO LogAccesos (idUsuari, rol, dataHora, ip) 
+             VALUES (?, ?, NOW(), ?)"
         );
         $stmt->execute([$idUsuari, $rol, $_SERVER['REMOTE_ADDR'] ?? 'desconegut']);
     } catch (PDOException $e) {
-        // El log d'accés no hauria d'aturar el flux de l'aplicació
         error_log('Error registrant accés: ' . $e->getMessage());
     }
 }
