@@ -45,17 +45,16 @@ mostrarMissatge();
 
 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1rem; margin-bottom:2rem;">
     <div class="card" style="text-align:center;">
-        <div style="font-size:2.5rem;">👨‍🎓</div>
         <div style="font-size:2rem; font-weight:700; color:#1a4f8a;"><?= (int)$totalAlumnes ?></div>
         <div style="color:#666;">Alumnes registrats</div>
     </div>
     <div class="card" style="text-align:center;">
-        <div style="font-size:2.5rem;">🖥️</div>
+        <img src="../imatges/montsia-removebg-preview.png" alt="Foto de perfil"
+             style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:0.5rem; border:3px solid #1a4f8a;">
         <div style="font-size:2rem; font-weight:700; color:#1a4f8a;"><?= (int)$totalAssig ?></div>
         <div style="color:#666;">Assignacions actives</div>
     </div>
     <div class="card" style="text-align:center;">
-        <div style="font-size:2.5rem;">⚠️</div>
         <div style="font-size:2rem; font-weight:700; color:#e74c3c;"><?= (int)$totalIncidencies ?></div>
         <div style="color:#666;">Incidències obertes</div>
     </div>
@@ -85,8 +84,8 @@ mostrarMissatge();
 </div>
 
 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
-    <a class="btn btn-primary" href="dispositius_aula.php">📍 Veure dispositius per aula</a>
-    <a class="btn btn-warning" href="incidencies.php">⚠️ Veure incidències</a>
+    <a class="btn btn-primary" href="dispositius_aula.php">Veure dispositius per aula</a>
+    <a class="btn btn-warning" href="incidencies.php">Veure incidències</a>
 </div>
 
 <?php peu(); ?>
